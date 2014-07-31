@@ -127,9 +127,9 @@ void Control_Panel_Window::copy_state( Control_Panel_Window* cp)
   ix_style_ = cp->ix_style_;
   jy_style_ = cp->jy_style_;
   kz_style_ = cp->kz_style_;
-  ix_lock_ = ix_lock_;
-  jy_lock_ = jy_lock_;
-  kz_lock_ = kz_lock_;
+  ix_lock_ = cp->ix_lock_;
+  jy_lock_ = cp->jy_lock_;
+  kz_lock_ = cp->kz_lock_;
   point_size_save_ = cp->point_size_save_;
   scale_points_save_ = cp->scale_points_save_;
   transform_style_save_ = cp->transform_style_save_;
@@ -392,10 +392,10 @@ void Control_Panel_Window::make_widgets( Control_Panel_Window *cpw)
   // Dynamically build the variables (axes selection) menu(s).
   // cout << "starting axes menu build, nvars = " << nvars << endl;
   for( int i=0; i<=nvars; i++) {
-    // cout << "label " << i 
-    //      << " = " << (column_info[i].label).c_str() << endl;
+    //cout << "DEBUG label " << i 
+    //     << " = " << Data_File_Manager::column_info[i].label.c_str() << endl;
     // varindex_menu_items[i].label((const char *) ((column_info[i].label).c_str()));
-    varindex_menu_items[i].label( (const char *) (pdfm->column_label(i)).c_str());
+    varindex_menu_items[i].label( (const char *) Data_File_Manager::column_info[i].label.c_str());
     varindex_menu_items[i].user_data((void *)i);
   }
   varindex_menu_items[nvars+1].label(0);
@@ -617,7 +617,7 @@ void Control_Panel_Window::make_widgets( Control_Panel_Window *cpw)
   b->tooltip("reset translations and scalings for this plot");
 
   // Button (1,2): z-buffering control
-  z_bufferring_button = b = new Fl_Button(xpos2, ypos+=25, 20, 20, "z-bufferring");
+  z_buffering_button = b = new Fl_Button(xpos2, ypos+=25, 20, 20, "z-buffering");
   b->callback((Fl_Callback*)redraw_one_plot, this);
   b->align(FL_ALIGN_RIGHT);
   b->type(FL_TOGGLE_BUTTON); 

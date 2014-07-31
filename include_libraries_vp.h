@@ -196,7 +196,7 @@
 
 // BLAS
 #ifdef __APPLE__
-  #include <vecLib/vBLAS.h>
+//  #include <vecLib/vBLAS.h>
 #elif linux
   //extern "C" {
   //# include <cblas.h>

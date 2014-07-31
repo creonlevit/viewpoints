@@ -214,7 +214,7 @@ class Control_Panel_Window : public Fl_Group
 
     Fl_Button *show_scale;
     Fl_Button *choose_selection_color_button;
-    Fl_Button *z_bufferring_button;
+    Fl_Button *z_buffering_button;
     // Fl_Button *x_equals_delta_x, *y_equals_delta_x;
     Fl_Group *transform_style;
     Fl_Button *sum_vs_difference, *cond_prop, *fluctuation, *no_transform;

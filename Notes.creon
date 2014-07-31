@@ -1583,3 +1583,12 @@ cleanly and without warnings.
 Note:  It is not clear that fltk is going to survive in the 64 bit apple world.
 
 Note: -m32 added to compiler flags forces 32 bit mode....
+
+Mon Oct  1 10:28:03 PDT 2012
+
+Got it compiled for OSX 10.8, checked in new sources. Had to comment out all save state stuff, since boost serielaization does not seem to compile.
+
+Uploaded new binaries.  Invited Matt the physicsist Matt <mbellis@siena.edu> to join assmebla group and he accepted.
+
+Note vp depends on non-standard flews supplied by flews author.  This should be put into vo source tree?
+

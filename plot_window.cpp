@@ -1333,15 +1333,15 @@ void Plot_Window::draw_data_points()
   glEnable(GL_ALPHA_TEST);
 #endif //ALPHA_TEXTURE
 
-  int z_bufferring_enabled = 0;
+  int z_buffering_enabled = 0;
   int current_sprite = 0;
 
   // Are we plotting in two dimensions or three?
   if( cp->varindex3->value() != nvars) {
-    if (cp->z_bufferring_button->value()) {
+    if (cp->z_buffering_button->value()) {
       glEnable( GL_DEPTH_TEST);
       glDepthFunc( GL_GREATER);
-      z_bufferring_enabled = 1;
+      z_buffering_enabled = 1;
     }
   }
 
@@ -1492,7 +1492,7 @@ void Plot_Window::draw_data_points()
   }
   
   // potentially turn off various gl state variables that are specific to this routine.
-  if (z_bufferring_enabled) {
+  if (z_buffering_enabled) {
     glDisable( GL_DEPTH_TEST);
   }
   if (blending_mode == Control_Panel_Window::BLEND_BRUSHES_SEPARATELY) {
