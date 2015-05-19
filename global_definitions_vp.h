@@ -66,7 +66,7 @@ GLOBAL int nplots INIT(nrows*ncols);  // Default number of plot windows
 
 // Set the maximum number of columns and rows
 #define MAXVARS 400  // Maximum number of columns
-#define MAXPOINTS 3000000  // Maximum number of rows (unless overidded by "--npoints=<int>")
+#define MAXPOINTS 8000000  // Maximum number of rows (unless overidded by "--npoints=<int>")
 
 // Initialize the actual number of rows (points or values) in the data file 
 // and the actual number of columns (fields) in each record.

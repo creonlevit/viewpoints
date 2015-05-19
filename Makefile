@@ -4,7 +4,7 @@ platform := $(shell uname)
 MAKEDEPEND	= $(CXX) -E -MM
 
 ifeq ($(platform),Darwin)
-	POSTBUILD = make-OSX-application.csh vp viewpoints
+	POSTBUILD = ./make-OSX-application.csh vp viewpoints
 else
 	POSTBUILD = echo
 endif
@@ -30,7 +30,7 @@ ifeq ($(platform),Darwin)
 #	LDFLAGS_ADD = -arch i386 -isysroot /Developer/SDKs/MacOSX10.6.sdk
 #	OPTIM = $(DEBUG) $(CXXFLAGS_ADD)
 #	OPTIM = -O4 -ftree-vectorize -ftree-vectorizer-verbose=0 -Wall -Wconversion -fno-strict-aliasing -ffast-math -fsigned-char -gfull $(CXXFLAGS_ADD)
-	BLITZ_FIX = -Wno-parentheses -Wno-header-guard
+	BLITZ_FIX = -Wno-parentheses -Wno-header-guard -Wno-sign-conversion
 	OPTIM = -O3 $(BLITZ_FIX) -fno-strict-aliasing -Wno-deprecated-declarations -ffast-math -fsigned-char -gfull $(CXXFLAGS_ADD)
 
 else
@@ -42,8 +42,8 @@ else
 endif
 
 # If svnversion causes trouble, use -D SVN_VERSION="\"local\""
+#CXXFLAGS	= $(OPTIM) -D SVN_VERSION="\"local\""
 CXXFLAGS	= $(OPTIM) -D SVN_VERSION="\"revision $(shell svnversion -n)\""
-#CXXFLAGS	= $(DEBUG) -D SVN_VERSION="\"revision $(shell svnversion -n)\""
 
 # libraries to link with:
 ifeq ($(platform),Darwin)
@@ -51,16 +51,9 @@ ifeq ($(platform),Darwin)
 	LDLIBS = -framework Foundation -framework AGL -framework OpenGL -framework Carbon -framework Cocoa -framework ApplicationServices -framework AudioToolbox -lgsl -lm -lmx -lcfitsio
 
 # for OSX machines where I CAN install things as root... (don't forget to build all libraries as static only)
-	INCPATH = -I/usr/local/include -I/sw/include 
-	LIBPATH	= -L/usr/local/lib -L/sw/lib
+	INCPATH = -I/usr/local/include 
+	LIBPATH	= -L/usr/local/lib 
 
-else
-# for NAS linux machines where I can NOT install things as root (don't forget to build all libraries as static only)
-	INCPATH = -I$$HOME/include -I$$HOME/include/boost
-	LIBPATH	= -L$$HOME/lib -L/usr/X11R6/lib
-	LDLIBS = -lGL -lGLU -lXft -lXext -lm -lgsl
-# for debugging
-#	LDLIBS = -lGLU -lGL -lXext -lm -lgsl -lefence -lpthread  
 endif
 
 INCFLEWS	= -I../flews-0.3.1
@@ -81,7 +74,7 @@ OBJS:=	$(SRCS:.cpp=.o)
 
 TARGET = vp$(EXEEXT)
 
-DOCUMENTATION = README vp_help_manual.htm sampledata.txt 
+DOCUMENTATION = README vp_help_manual.htm sampledata.txt INSTALL notes.summary notes.creon viewpoints2010.pdf
 
 default: $(TARGET)
 
