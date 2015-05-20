@@ -61,7 +61,7 @@ overwriting and destroying any original of the same name, and write the data
 to a single ASCII table extension in that file.  This FITS i/o capability is 
 still under development and will be expanded in future revisions.
 
-Configuration Files: *** DEPECATED due to instability ***
+Configuration Files: *** DEPRECATED due to instability ***
 
 // Viewpoints can save configuration information, such as axis and brush 
 // settings, window positions, and the name of the last input or output data 
